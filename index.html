@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Esteban Martínez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --teal:          #3C6E71;
+      --teal-light:    #4d9093;
+      --teal-glow:     rgba(60, 110, 113, 0.15);
+      --teal-border:   rgba(60, 110, 113, 0.40);
+      --bg:            #000000;
+      --bg-card:       #0d0d0d;
+      --bg-card-hover: #111111;
+      --text:          #ffffff;
+      --text-muted:    #999999;
+      --text-dim:      #3a3a3a;
+      --border-card:   #1a1a1a;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Host Grotesk', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 24px 96px;
+      min-height: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* ── Logo ──────────────────────────────────────────── */
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 36px;
+      flex-shrink: 0;
+      border: 1px solid var(--border-card);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Header ────────────────────────────────────────── */
+    .name {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 64px;
+    }
+
+    .tagline a {
+      color: var(--teal-light);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .tagline a:hover {
+      color: var(--teal);
+      opacity: 0.75;
+    }
+
+    /* ── Social Links ───────────────────────────────────── */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 0% 50%, var(--teal-glow), transparent 65%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .link-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--teal);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(60, 110, 113, 0.14);
+    }
+
+    .link-card:hover::before {
+      opacity: 1;
+    }
+
+    .link-card:active {
+      transform: translateY(0);
+    }
+
+    .icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .link-card:hover .icon-wrap {
+      background: var(--teal-glow);
+      border-color: var(--teal-border);
+    }
+
+    .icon-wrap svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .link-card:hover .icon-wrap svg {
+      fill: var(--teal-light);
+    }
+
+    .link-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .link-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .link-handle {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .link-arrow {
+      color: var(--text-dim);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .link-card:hover .link-arrow {
+      color: var(--teal-light);
+      transform: translateX(3px);
+    }
+
+    /* ── Brand icon-wrap colors ─────────────────────────── */
+    .instagram-icon-wrap {
+      background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%);
+      border-color: transparent;
+    }
+
+    .tiktok-icon-wrap {
+      background: #010101;
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    .youtube-icon-wrap {
+      background: #FF0000;
+      border-color: transparent;
+    }
+
+    .link-card:hover .instagram-icon-wrap,
+    .link-card:hover .tiktok-icon-wrap,
+    .link-card:hover .youtube-icon-wrap {
+      background: inherit;
+      filter: brightness(1.12);
+    }
+
+    .link-card:hover .instagram-icon-wrap { background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%); }
+    .link-card:hover .tiktok-icon-wrap    { background: #010101; }
+    .link-card:hover .youtube-icon-wrap   { background: #FF0000; }
+
+    .instagram-icon-wrap svg,
+    .tiktok-icon-wrap svg,
+    .youtube-icon-wrap svg {
+      fill: #ffffff;
+    }
+
+    .link-card:hover .instagram-icon-wrap svg,
+    .link-card:hover .tiktok-icon-wrap svg,
+    .link-card:hover .youtube-icon-wrap svg {
+      fill: #ffffff;
+    }
+
+    /* ── WALKA icon-wrap override ────────────────────────── */
+    .walka-icon-wrap {
+      background: #ffffff;
+      border-color: rgba(255, 255, 255, 0.12);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .link-card:hover .walka-icon-wrap {
+      background: #ffffff;
+      border-color: rgba(255, 255, 255, 0.20);
+    }
+
+    .walka-icon-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Divider ─────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #1a1a1a 30%, #1a1a1a 70%, transparent);
+      margin-bottom: 64px;
+    }
+
+    /* ── WALKA Section ───────────────────────────────────── */
+    .walka-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .walka-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .walka-brand {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      background: linear-gradient(135deg, #ffffff 30%, var(--teal-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .walka-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 260px;
+      font-style: italic;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .footer {
+      margin-top: 20px;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Fade-in animation ──────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeIn 0.55s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .container > *:nth-child(2) { animation-delay: 0.13s; }
+    .container > *:nth-child(3) { animation-delay: 0.20s; }
+    .container > *:nth-child(4) { animation-delay: 0.27s; }
+    .container > *:nth-child(5) { animation-delay: 0.34s; }
+    .container > *:nth-child(6) { animation-delay: 0.41s; }
+    .container > *:nth-child(7) { animation-delay: 0.48s; }
+
+    .links .link-card:nth-child(1) { animation-delay: 0.28s; }
+    .links .link-card:nth-child(2) { animation-delay: 0.36s; }
+    .links .link-card:nth-child(3) { animation-delay: 0.44s; }
+
+    .walka-section > *:nth-child(1) { animation-delay: 0.52s; }
+    .walka-section > *:nth-child(2) { animation-delay: 0.58s; }
+    .walka-section > *:nth-child(3) { animation-delay: 0.64s; }
+
+    /* ── Mobile ──────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      body {
+        padding: 60px 20px 80px;
+      }
+
+      .name {
+        font-size: 20px;
+      }
+
+      .walka-brand {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Logo -->
+    <div class="logo fade-in">
+      <img src="logo.jpg" alt="Juan Esteban Martínez" />
+    </div>
+
+    <!-- Name & tagline -->
+    <h1 class="name fade-in">Juan Esteban Martínez</h1>
+    <p class="tagline fade-in">
+      Cofundador de <a href="https://www.walka.com.co" target="_blank" rel="noopener noreferrer">WALKA</a>
+    </p>
+
+    <!-- Social links -->
+    <div class="links">
+
+      <!-- Instagram -->
+      <a class="link-card fade-in" href="https://www.instagram.com/juanes.mb/" target="_blank" rel="noopener noreferrer">
+        <div class="icon-wrap instagram-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+          </svg>
+        </div>
+        <div class="link-info">
+          <span class="link-name">Instagram</span>
+          <span class="link-handle">@juanes.mb</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- TikTok -->
+      <a class="link-card fade-in" href="https://www.tiktok.com/@juanes.mb" target="_blank" rel="noopener noreferrer">
+        <div class="icon-wrap tiktok-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.67a8.18 8.18 0 0 0 4.77 1.52V6.7a4.85 4.85 0 0 1-1-.01z"/>
+          </svg>
+        </div>
+        <div class="link-info">
+          <span class="link-name">TikTok</span>
+          <span class="link-handle">@juanes.mb</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- YouTube -->
+      <a class="link-card fade-in" href="https://www.youtube.com/@Juanes_mb" target="_blank" rel="noopener noreferrer">
+        <div class="icon-wrap youtube-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <div class="link-info">
+          <span class="link-name">YouTube</span>
+          <span class="link-handle">@Juanes_mb</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- WALKA -->
+      <a class="link-card fade-in" href="https://www.walka.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="icon-wrap walka-icon-wrap">
+          <img src="WLK FONDO BLANCO.png" alt="WALKA" />
+        </div>
+        <div class="link-info">
+          <span class="link-name">WALKA</span>
+          <span class="link-handle">walka.com.co</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </div>
+
+    <p class="footer fade-in">© 2026 Juan Esteban Martínez</p>
+
+  </div>
+</body>
+</html>
